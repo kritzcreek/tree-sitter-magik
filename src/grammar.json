@@ -2263,6 +2263,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "regex_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "number"
         },
         {
@@ -2292,6 +2296,32 @@
         {
           "type": "SYMBOL",
           "name": "vector"
+        }
+      ]
+    },
+    "character_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_identifier"
+            },
+            {
+              "type": "PATTERN",
+              "value": "."
+            },
+            {
+              "type": "STRING",
+              "value": " "
+            }
+          ]
         }
       ]
     },
@@ -2357,6 +2387,13 @@
           ]
         }
       ]
+    },
+    "regex_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\/.*?\\/[qisdlmuCX]*"
+      }
     },
     "call": {
       "type": "PREC_RIGHT",
@@ -4415,32 +4452,6 @@
     "symbol": {
       "type": "PATTERN",
       "value": ":(\\|[^|]*\\||[a-zA-Z0-9_\\?!]+)+"
-    },
-    "character_literal": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "%"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_identifier"
-            },
-            {
-              "type": "PATTERN",
-              "value": "."
-            },
-            {
-              "type": "STRING",
-              "value": " "
-            }
-          ]
-        }
-      ]
     },
     "documentation": {
       "type": "PREC_RIGHT",
