@@ -14,11 +14,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm install
+      - name: Setup tree-sitter
+        uses: tree-sitter/setup-action@v1
       - name: Run linter
-        uses: tree-sitter/parser-test-action@v1.2
+        uses: tree-sitter/parser-test-action@v2
         with:
+          generate: true
           lint: true
           test-grammar: false
           test-library: false
@@ -41,12 +42,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Set up NodeJS
-        uses: actions/setup-node@v4
+      - name: Setup tree-sitter
+        uses: tree-sitter/setup-action@v1
         with:
-          node-version: 20.12.1
-      - name: Install dependencies
-        run: npm install
+          install-lib: false
       - name: Build and test
         run: npm run-script build-test
       - name: Check unchanged parser
